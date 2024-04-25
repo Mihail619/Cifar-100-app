@@ -1,0 +1,9 @@
+/models archive
+/venv
+/Data
+*png
+*jpg
+/__pycache__
+/tests
+/images
+/.pytest_cache
