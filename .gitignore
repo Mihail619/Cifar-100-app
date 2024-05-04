@@ -7,3 +7,4 @@
 /tests
 /images
 /.pytest_cache
+__pycache__
