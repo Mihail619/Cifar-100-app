@@ -10,7 +10,7 @@ import json
 '''Реализуется предсказание модели с помощью библиотеки onnxruntime и OpenCV'''
 
 def get_possible_classes():
-    with open('image_model\classes.json') as file:
+    with open('image_model/classes.json') as file:
         data = json.load(file)
     return data
 

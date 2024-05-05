@@ -1,7 +1,7 @@
 /models archive
 /venv
 /Data
-*png
+
 *jpg
 /__pycache__
 /tests

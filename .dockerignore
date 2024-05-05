@@ -1,0 +1,9 @@
+venv/
+Data/
+/images
+/tests
+tests/
+
+Dockerfile
+__pycache__/
+.pytest_cache/
