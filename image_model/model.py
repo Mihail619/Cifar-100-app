@@ -69,9 +69,9 @@ def get_image_class_prediction(image):
     classes_dict = get_possible_classes()
 
     # получим название символа который был предсказан с наибольшей вероятностью
-    predicted_class = classes_dict[str(predicted_index) ]
+    predicted_class_name = classes_dict[str(predicted_index) ]
     
-    return predicted_class
+    return predicted_class_name
 
 
 def get_result(image_file, is_api=False) -> dict:
@@ -79,7 +79,7 @@ def get_result(image_file, is_api=False) -> dict:
     # зафиксируем начальное время
     start_time = datetime.datetime.now()
 
-    print(type(image_file))
+    print(type(image_file), image_file.shape)
 
     # выполним предсказание моделью и получим класс изображения (название символа)
     class_name = get_image_class_prediction(image=image_file)
@@ -96,19 +96,11 @@ def get_result(image_file, is_api=False) -> dict:
     execution_time = f'{round(time_diff.total_seconds()*1000)} ms'
 
     return {
-        'class_name': class_name,
+        'predictions': {'class_name': class_name},
         'execution_time': execution_time
     }
 
 
 
 if __name__ == '__main__':
-    dir_list = os.listdir("tests\\images")
-    file_name = random.choice(dir_list)
-    with open(f'tests\\images\\{file_name}', 'rb') as f:
-        result = get_result(f.read())
-
-    print(result)
-    
-    cv2.imshow(file_name, cv2.imread(f'tests\\images\\{file_name}'))
-    cv2.waitKey(0)
+    pass

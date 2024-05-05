@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Recogntion App using FastAPI and PyTorch</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}?v=1.0.1">
+
+</head>
+
+<body class="prediction">
+
+    <div class="background">
+        <div class="rectangle">
+            <div class="form_side">
+
+                <form method="post" enctype="multipart/form-data" id="uploadForm">
+
+                    <div class="file">
+                        <p class="file_head"> ВЫБРАТЬ ИЗОБРАЖЕНИЕ </p>
+                        <label id="label" class="label_file">
+
+                            <img src="static\images\white.png" alt="Placeholder" id="placeholder" class="preview">
+
+                            <input type="file" name="file" id="file" accept="image/*" required hidden>
+
+                        </label>
+                    </div>
+
+
+                    <div class="button">
+                        <input type="submit" value="ОПРЕДЕЛИТЬ КЛАСС">
+                    </div>
+                </form>
+
+            </div>
+            <!-- Display output Data-->
+            {%if result %}
+            <table id="result" class="request">
+                <tr>
+                    <td> НА ИЗОБРАЖЕНИИ:</td>
+                    <td> "{{result.predictions.class_name}}"</td>
+                </tr>
+                <tr>
+                    <td> ЗАТРАЧЕННОЕ ВРЕМЯ:</td>
+                    <td>{{result.execution_time}}</td>
+                </tr>
+            </table>
+
+            {% else %}
+            <div id="result" class="request">
+                <p> </p>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <script>
+        const input = document.querySelector('input[type="file"]');
+        const preview = document.querySelector('.preview');
+
+        input.addEventListener('change', () => {
+            const file = input.files[0];
+
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                preview.src = reader.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- static\images\white.png -->

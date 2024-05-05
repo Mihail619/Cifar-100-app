@@ -5,3 +5,4 @@ Pillow
 onnxruntime
 opencv-python
 python-multipart
+jinja2
